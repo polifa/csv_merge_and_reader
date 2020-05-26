@@ -1,0 +1,44 @@
+{% extends "datatable/base.html" %}
+{% block content %}
+{% load i18n static %}
+{% load static %}
+{% load django_tables2 %}
+{% if user.is_authenticated %}
+<div class="card border-light mb-12">
+  <div class="card-header text-center">{% trans 'Filter' %}</div>
+  <div class="card-body">
+    <form method="get">
+      <div class="form-row text-center">
+        <div class="form-group col-md-2">
+          <label class="col-form-label">{% trans 'REQ Number:' %}</label>
+          {{ filter.form.reqnumber }}
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label">{% trans 'Description:' %}</label>
+          {{ filter.form.description }}
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label">{% trans 'PR Number:' %}</label>
+          {{ filter.form.prnumber }}
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label">{% trans 'PO Number:' %}</label>
+          {{ filter.form.ponumber }}
+        </div>
+        <div class="form-group col-md-2">
+          <label class="col-form-label">{% trans 'PO Vendor:' %}</label>
+          {{ filter.form.povendor }}
+        </div>
+        <div class="form-group col-md-2">
+          <button type="submit" class="btn btn-sm btn-primary">{% trans 'Search' %}</button>
+          <a class="btn btn-danger btn-sm" href="{% url 'index' %}">{% trans 'Clear Search' %}</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% render_table table %}
+{% else %}
+<li><a href="{% url 'login'%}?next={{request.path}}">Please login to view this page.</a></li>
+{% endif %}
+{% endblock %}
