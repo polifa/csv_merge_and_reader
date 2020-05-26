@@ -126,7 +126,7 @@ IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'America/Sao_Paulo'
+TIME_ZONE = 'UTC'
 
 USE_I18N = False
 
