@@ -1366,6 +1366,7 @@ pre code {
 }
 
 .table {
+  table-layout: auto;
   width: 100%;
   margin-bottom: 1rem;
   color: #858796;
@@ -1374,8 +1375,8 @@ pre code {
 .table th,
 .table td {
   padding: 0.75rem;
-  vertical-align: top;
   border-top: 1px solid #e3e6f0;
+  font-size: 13px;
 }
 
 .table thead th {
@@ -2493,8 +2494,8 @@ fieldset:disabled a.btn {
 
 .btn-dark {
   color: #fff;
-  background-color: #5a5c69;
-  border-color: #5a5c69;
+  background-color: #373d42;
+  border-color: #373d42;
 }
 
 .btn-dark:hover {
