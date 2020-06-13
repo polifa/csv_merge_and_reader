@@ -1,8 +1,15 @@
 from django.db import models
 import datetime
 
+class Project(models.Model):
+    projectname = models.CharField(verbose_name="Project Name", max_length=50)
+
+    def __str__(self):
+        return self.projectname
+
 class Procurement(models.Model):
     reqnumber = models.CharField(verbose_name="REQ Number", max_length=15)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True)
     reqcreated = models.DateField(verbose_name="REQ Created", default=None, blank=True, null=True)
     reqstatus = models.CharField(verbose_name="REQ Status", max_length=50)
     description = models.CharField(verbose_name="Description", max_length=50)

@@ -10,7 +10,7 @@ class ProcurementTable(tables.Table):
     <a href='https://eccprd.corp.amdocs.com/irj/portal/P2P?NavMode=10&pr={{record.prnumber}}'>{{record.prnumber}}</a>
     {% endif %}
     {% if record.prnumber == '0' %}
-    <a>--</a>
+    <a>__</a>
     {% endif %}
     """)
     ponumber = tables.TemplateColumn("""
@@ -18,7 +18,7 @@ class ProcurementTable(tables.Table):
     <a href='https://eccprd.corp.amdocs.com/irj/portal/P2P?NavMode=10&po={{record.ponumber}}'>{{record.ponumber}}</a>
     {% endif %}
     {% if record.ponumber == '0' %}
-    <a>--</a>
+    <a>__</a>
     {% endif %}
     """)
 

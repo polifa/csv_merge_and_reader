@@ -61,7 +61,6 @@ def import_data(request):
 
         if not result.has_errors():
             # Import now
-            Procurement.objects.all().delete()
             procurement_resource.import_data(dataset, dry_run=False)
             messages.success(request, 'Procurement details updated.')
 
