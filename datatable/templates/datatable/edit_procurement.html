@@ -1,0 +1,18 @@
+{% extends "datatable/base2.html" %}
+{% block content %}
+{% load static %}
+<div class="container-fluid">
+  <h3 class="text-center">{{ procurement.reqnumber }} - {{ procurement.description }}</h3>
+  <div class="import-form">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <h5 class="text-center">Update Procurement Project</h5>
+      <div class="form-group text-center">
+        <td>{{ form.project.label_tag }}</td>
+        <td>{{ form.project }}</td>
+      </div>
+      <button class="btn btn-primary btn-block" type="submit">Update</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

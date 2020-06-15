@@ -13,6 +13,10 @@ class ProcurementAdmin(ImportExportModelAdmin):
     def change_button(self, obj):
         return format_html('<a class="btn" href="/admin/datatable/procurement/{}/change/">Edit</a>', obj.id)
 
+    def change_view(self, request, object_id, extra_context=None):
+        self.exclude = ('reqnumber','reqstatus','description','prnumber','ponumber','reqcreated','povendor','postatus','pomaterial','poprice','pocreated')
+        return super().change_view(request, object_id, extra_context)
+
     list_display = ("reqnumber","project", "reqcreated", "reqstatus", "description", "prnumber",
      "ponumber", "postatus", "povendor", "pomaterial", "poprice", "pocreated", "change_button")
 

@@ -11,6 +11,6 @@ urlpatterns = [
     path('', ProcurementListView.as_view(), name="index"),
     path('import/', views.import_data, name='import_data'),
     path('export/', views.export_data, name='export_data'),
-    path('merge_csv_files/', views.merge_csv_files, name='merge_csv_files'),
+    path('edit_procurement/<int:pk>/', views.edit_procurement, name='edit_procurement'),
     path('accounts/', include('django.contrib.auth.urls')),
 ]

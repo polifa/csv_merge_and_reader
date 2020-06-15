@@ -11,6 +11,7 @@ from .models import Procurement
 from .resources import ProcurementResource
 from .tables import ProcurementTable
 from .filters import ProcurementFilter
+from .forms import ProcurementForm
 import pandas as pd
 import numpy as np
 import requests
@@ -67,22 +68,16 @@ def import_data(request):
     return render(request, 'datatable/import.html')
 
 @login_required
-def merge_csv_files(request):
-    if request.method == 'POST':
-        oldcsv=pd.read_csv(request.FILES['oldCSV'])
-        newcsv=pd.read_csv(request.FILES['newCSV'])
+def edit_procurement(request, pk):
+    procurement = Procurement.objects.get(pk=pk)
 
-        mergedcsv = pd.concat([newcsv,oldcsv]).drop_duplicates(subset='reqnumber')
-        mergedcsv["ponumber"] = mergedcsv["ponumber"].fillna(0).astype('Int64')
-        mergedcsv["prnumber"] = mergedcsv["prnumber"].fillna(0).astype('Int64')
+    form = ProcurementForm(request.POST or None, instance=procurement)
 
-        response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="merged_csv.csv"'
+    if form.is_valid():
+        form.save()
+        return redirect('index')
 
-        mergedcsv.to_csv(path_or_buf=response, index=False)
-        return response
-
-    return render(request, 'datatable/mergefiles.html')
+    return render(request, 'datatable/edit_procurement.html', {'form': form, 'procurement': procurement})
 
 class ProcurementListView(SingleTableMixin, FilterView):
     model = Procurement

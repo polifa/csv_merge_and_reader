@@ -1,10 +1,14 @@
 import django_tables2 as tables
 from django.utils.html import format_html
 from .models import Procurement
+from django_tables2.utils import A
+
 
 class ProcurementTable(tables.Table):
     id = tables.Column(verbose_name='')
+    actions = tables.LinkColumn('edit_procurement', args=[A('pk')], verbose_name='Actions', empty_values=(), text='Edit')
     reqnumber = tables.TemplateColumn("<a href='https://eccprd.corp.amdocs.com/irj/portal/P2P?NavMode=10&req={{record.reqnumber}}'>{{record.reqnumber}}</a>")
+
     prnumber = tables.TemplateColumn("""
     {% if record.prnumber != '0' %}
     <a href='https://eccprd.corp.amdocs.com/irj/portal/P2P?NavMode=10&pr={{record.prnumber}}'>{{record.prnumber}}</a>
@@ -13,6 +17,7 @@ class ProcurementTable(tables.Table):
     <a>__</a>
     {% endif %}
     """)
+
     ponumber = tables.TemplateColumn("""
     {% if record.ponumber != '0' %}
     <a href='https://eccprd.corp.amdocs.com/irj/portal/P2P?NavMode=10&po={{record.ponumber}}'>{{record.ponumber}}</a>
@@ -24,6 +29,12 @@ class ProcurementTable(tables.Table):
 
     def render_id(self, value):
         return format_html('<input type="hidden" name="track_id" value="{}" />', str(value))
+
+    def before_render(self, request):
+        if request.user.has_perm('datatable.change_datatable'):
+            self.columns.show('actions')
+        else:
+            self.columns.hide('actions')
 
     class Meta:
         model = Procurement
