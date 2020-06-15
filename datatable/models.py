@@ -2,7 +2,7 @@ from django.db import models
 import datetime
 
 class Project(models.Model):
-    projectname = models.CharField(verbose_name="Project Name", max_length=50)
+    projectname = models.CharField(verbose_name="Project Name", max_length=50, blank= True, null= True)
 
     def __str__(self):
         return self.projectname
