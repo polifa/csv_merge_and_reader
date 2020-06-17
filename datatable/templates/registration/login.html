@@ -12,41 +12,41 @@
 {% if user.is_authenticated %}
 <p>Your account doesn't have access to this page. To proceed,
   please login with an account that has access.</p>
-  {% else %}
-  <p class="text-center">Please login to see this page.</p>
-  {% endif %}
-  {% endif %}
-  <div class="login-form text-center">
-    <form method="post" action="{% url 'login' %}">
-      {% csrf_token %}
-      <h2 class="text-center">Log in</h2>
-      <div class="form-group">
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
-      </div>
-      <div class="form-group">
-        <td>{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
-      </div>
-      <button class="btn btn-primary btn-block" type="submit">Login</button>
-      <input type="hidden" name="next" value="{{ next }}" />
-    </form>
-  </div>
-  {% endblock %}
+{% else %}
+<p class="text-center">Please login to see this page.</p>
+{% endif %}
+{% endif %}
+<div class="login-form text-center">
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <h2 class="text-center">Log in</h2>
+    <div class="form-group">
+      <td>{{ form.username.label_tag }}</td>
+      <td>{{ form.username }}</td>
+    </div>
+    <div class="form-group">
+      <td>{{ form.password.label_tag }}</td>
+      <td>{{ form.password }}</td>
+    </div>
+    <button class="btn btn-primary btn-block" type="submit">Login</button>
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+</div>
+{% endblock %}
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="{%static 'datatable/vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{%static 'datatable/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="{%static 'datatable/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{%static 'datatable/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="{%static 'datatable/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+<!-- Core plugin JavaScript-->
+<script src="{%static 'datatable/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="{%static 'datatable/js/sb-admin-2.min.js' %}"></script>
+<!-- Custom scripts for all pages-->
+<script src="{%static 'datatable/js/sb-admin-2.min.js' %}"></script>
 
-  <!-- Page level plugins -->
-  <script src="{%static 'datatable/vendor/chart.js/Chart.min.js' %}"></script>
+<!-- Page level plugins -->
+<script src="{%static 'datatable/vendor/chart.js/Chart.min.js' %}"></script>
 
-  <!-- Page level custom scripts -->
-  <script src="{%static 'datatable/js/demo/chart-area-demo.js' %}"></script>
-  <script src="{%static 'datatable/js/demo/chart-pie-demo.js' %}"></script>
+<!-- Page level custom scripts -->
+<script src="{%static 'datatable/js/demo/chart-area-demo.js' %}"></script>
+<script src="{%static 'datatable/js/demo/chart-pie-demo.js' %}"></script>

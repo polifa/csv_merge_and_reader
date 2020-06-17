@@ -5,35 +5,35 @@
 {% load django_tables2 %}
 {% if user.is_authenticated %}
 <div class="container-fluid">
-<div class="card border-light">
-  <div class="card-header text-center">{% trans 'Filter' %}</div>
-  <div class="card-body">
-    <form method="get">
-      <div class="form-row text-center">
-        <div class="form-group col-md-2">
-          {{ filter.form.reqnumber }}
+  <div class="card border-light">
+    <div class="card-header text-center">{% trans 'Filter' %}</div>
+    <div class="card-body">
+      <form method="get">
+        <div class="form-row text-center">
+          <div class="form-group col-md-2">
+            {{ filter.form.reqnumber }}
+          </div>
+          <div class="form-group col-md-2">
+            {{ filter.form.description }}
+          </div>
+          <div class="form-group col-md-2">
+            {{ filter.form.prnumber }}
+          </div>
+          <div class="form-group col-md-2">
+            {{ filter.form.ponumber }}
+          </div>
+          <div class="form-group col-md-2">
+            {{ filter.form.povendor }}
+          </div>
+          <div class="form-group col-md-2">
+            <button type="submit" class="btn btn-sm btn-primary">{% trans 'Search' %}</button>
+            <a class="btn btn-dark btn-sm" href="{% url 'index' %}">{% trans 'Clear Search' %}</a>
+          </div>
         </div>
-        <div class="form-group col-md-2">
-          {{ filter.form.description }}
-        </div>
-        <div class="form-group col-md-2">
-          {{ filter.form.prnumber }}
-        </div>
-        <div class="form-group col-md-2">
-          {{ filter.form.ponumber }}
-        </div>
-        <div class="form-group col-md-2">
-          {{ filter.form.povendor }}
-        </div>
-        <div class="form-group col-md-2">
-          <button type="submit" class="btn btn-sm btn-primary">{% trans 'Search' %}</button>
-          <a class="btn btn-dark btn-sm" href="{% url 'index' %}">{% trans 'Clear Search' %}</a>
-        </div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
-</div>
-{% render_table table %}
+  {% render_table table %}
 </div>
 {% else %}
 <li><a href="{% url 'login'%}?next={{request.path}}">Please login to view this page.</a></li>
