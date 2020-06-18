@@ -39,3 +39,4 @@ class ProcurementTable(tables.Table):
     class Meta:
         model = Procurement
         template_name = "django_tables2/bootstrap4.html"
+        order_by = '-reqnumber'
